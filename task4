@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# REVIEW CONTENT FROM TASK 1-3 #
+	# task4.o, prefix, bin files, p, q, suffix ALREADY CREATED
+
+	# Benign file: prefix | p | suffix1 | p | suffix2
+
+# Generate suffix1 #
+	# 4160 | 128 | ??? | 128 | ???
+
+# Find offset of y array (bless) #
+head -c 97 suffix > suffix__1
+tail -c +2 suffix__1 > suffix_1
+
+# Generate suffix2 #
+	# 4160 | 128 | 96 | 128 | ???
+tail -c +224 suffix > suffix_2
+
+# Create executables #
+
+# Verify program works as intented #
+
