@@ -1,21 +1,28 @@
 #!/bin/bash
 
 # REVIEW CONTENT FROM TASK 1-3 #
-	# task4.o, prefix, bin files, p, q, suffix ALREADY CREATED
+	# task4.o, prefix, bin files, p, q ALREADY CREATED
+	# NOTE: It is important to understand the byte math
+	#	for this task. Note the size of the C program exec file.
+	#	Your altered files should be the same size after concatenation
 
+	#	Also tail and head count bytes starting at 0
+
+# Create suffix #
+tail -c +4289 task4.o > suffix
 	# Benign file: prefix | p | suffix1 | p | suffix2
 
 # Generate suffix1 #
 	# 4160 | 128 | ??? | 128 | ???
 
 # Find offset of y array (bless) #
-head -c 97 suffix > suffix__1
-tail -c +2 suffix__1 > suffix_1
+head -c 96 suffix > suffix_1
 
 # Generate suffix2 #
 	# 4160 | 128 | 96 | 128 | ???
-tail -c +224 suffix > suffix_2
-
+tail -c +225 suffix > suffix_2
+	# OR if you understand the simple byte math
+tail -c 3360 suffix > suffix_2
 # Create executables #
 
 # Verify program works as intented #
