@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Fill xyz array #
+echo "$(python -c 'print("A"*199)')"
+
+	# OR
+
+echo "$(python -c 'print("0x41,"*199)')"
+
+# Compile C Program #
+gcc task3.c -o task3.o
+
+# Find offset of xyz array using bless "
+
+# Create prefix (mult of 64) #
+head -c 4160 task3.o >> prefix
+
+# Generate P and Q values #
+md5collgen -p prefix -o out_p.bin out_q.bin
+
+# Isolate P and Q values #
+tail -c 128 out_p.bin > p
+tail -c 128 out_q.bin > q
+
+# Find offset for suffix #
+tail -c +4288 task3.o > suffix
+
+# Build executable #
+cat prefix p suffix > task3_1
+chmod +x task3_1
+
+
