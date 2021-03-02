@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Generate prefix and suffix that is mult of 64 #
+echo "$(python -c 'print("A"*63)')" > prefix
+echo "$(python -c 'print("B"*63)')" > suffix
+
+# Create collision #
+md5collgen -p prefix -o out1.bin out2.bin
+
+# Append suffix #
+cat out1.bin suffix > file1
+cat out2.bin suffix > file2
+
+# Are checksums the same? #
+md5sum file1 ; md5sum file2
